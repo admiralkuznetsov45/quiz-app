@@ -5,21 +5,23 @@ import gql from "graphql-tag";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { Button } from 'semantic-ui-react';
 import { QuizContext } from "./helpers";
+import  EndScreen  from "./EndScreen";
 import { useNavigate } from 'react-router-dom'
 
 const Quiz = () => {
     const navigate = useNavigate();
     const [currentQuestion , setcurrentQuestion] = useState(0);
     const [optionChosen , setOptionChosen] = useState();
+    const [isFinish , setisFinish] = useState(false);
     const { gameState, setGameState } = useContext(
        QuizContext
       );
     const [score,setScore] = useState(0)
-    //const [tampilData,{ data,loading,error}] = useQuery(TAMPIL_SEMUA_SOAL_JAWABAN);
+    const { data,loading,error} = useQuery(TAMPIL_SEMUA_SOAL_JAWABAN);
 
 
     const nextQuestion = () => {
-        if(QuizData[currentQuestion].kuncijawaban == optionChosen){
+        if(data?.soal[currentQuestion].kuncijawaban == optionChosen){
             setScore(score + 1);
             alert("Benar")
         }
@@ -35,40 +37,44 @@ const Quiz = () => {
     
       //kelar quiz
     const finishQuiz = () => {
-        if (QuizData[currentQuestion].kuncijawaban == optionChosen) {
+        if (data?.soal[currentQuestion].kuncijawaban == optionChosen) {
           setScore(score + 1);
           alert("Benar")
-        }
-        navigate('/endscreen')
+        } 
+        setisFinish(true)
       };
     
 
     return (
-        <div>
-         <div class="header"></div>
-        <div class="Quiz">
-       
-
-       <div>{QuizData[currentQuestion].soal}</div>
-
-       <div className="options">
-       <button  onClick={() => {chooseOption(QuizData[currentQuestion].jawabanA)}}>{QuizData[currentQuestion].jawabanA}</button>
-       <button  onClick={() => {chooseOption(QuizData[currentQuestion].jawabanB)}}>{QuizData[currentQuestion].jawabanB}</button>
-       <button  onClick={() => {chooseOption(QuizData[currentQuestion].jawabanC)}}>{QuizData[currentQuestion].jawabanC}</button>
-       <button  onClick={() => {chooseOption(QuizData[currentQuestion].jawabanD)}}>{QuizData[currentQuestion].jawabanD}</button>
-       </div>
-
-       {currentQuestion == QuizData.length - 1 ? (
-        <button onClick={finishQuiz} id="nextQuestion">
-          Finish Quiz
-        </button>
-      ) : (
-        <button onClick={nextQuestion} id="nextQuestion">
-          Next Question
-        </button>
-      )}
-       </div>
-       </div>
+      <>
+         {!isFinish?(
+          <div>
+             <div class="header"></div>
+             <div class="Quiz">
+            
+     
+            <div>{data?.soal[currentQuestion].soal}</div>
+     
+            <div className="options">
+            <button  onClick={() => {chooseOption(data?.soal[currentQuestion].jawabanA)}}>{data?.soal[currentQuestion].jawabanA}</button>
+            <button  onClick={() => {chooseOption(data?.soal[currentQuestion].jawabanB)}}>{data?.soal[currentQuestion].jawabanB}</button>
+            <button  onClick={() => {chooseOption(data?.soal[currentQuestion].jawabanC)}}>{data?.soal[currentQuestion].jawabanC}</button>
+            <button  onClick={() => {chooseOption(data?.soal[currentQuestion].jawabanD)}}>{data?.soal[currentQuestion].jawabanD}</button>
+            </div>
+     
+            {currentQuestion == data?.soal.length - 1 ? (
+             <button onClick={finishQuiz} id="nextQuestion">
+               Finish Quiz
+             </button>
+           ) : (
+             <button onClick={nextQuestion} id="nextQuestion">
+               Next Question
+             </button>
+           )}
+            </div>
+            </div>
+         ):(<EndScreen score = {score} length = {data?.soal.length} />)}
+      </>
     )
 }
 export default Quiz;
