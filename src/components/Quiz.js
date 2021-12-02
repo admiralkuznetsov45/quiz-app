@@ -23,7 +23,6 @@ const Quiz = () => {
     const nextQuestion = () => {
         if(data?.soal[currentQuestion].kuncijawaban == optionChosen){
             setScore(score + 1);
-            alert("Benar")
         }
 
         setcurrentQuestion(currentQuestion +1)
@@ -38,8 +37,7 @@ const Quiz = () => {
       //kelar quiz
     const finishQuiz = () => {
         if (data?.soal[currentQuestion].kuncijawaban == optionChosen) {
-          setScore(score + 1);
-          alert("Benar")
+          setScore(score + 1)
         } 
         setisFinish(true)
       };
