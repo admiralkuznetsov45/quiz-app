@@ -1,0 +1,75 @@
+.header {
+    padding: 40px;
+    text-align: center;
+    background: #F49B14;
+    color: white;
+    font-size: 30px;
+  }
+
+  #judul{
+  margin-top: 100px;
+   
+  }
+
+#home {
+  background-position: center;
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
+
+  // ul{
+  //   list-style-type: none;
+  // }
+
+  section{
+    background-color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .play-button-container {
+    width: 100%;
+  }
+
+  a.play-button{
+    background-color: green;
+    // border-radius: 30px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .auth-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  
+  #login-button{
+    background-color: red;
+  }
+  
+  #signup-button{
+    background-color: blue;
+  }
+  
+  .auth-container .auth-buttons{
+    color: white;
+    cursor: pointer;
+    // border-radius: 30px;
+    text-align: center;
+    padding: 1rem 0;
+    width: 45%;
+  }
+
+  
+}
+
+
+
+
+
