@@ -1,12 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
-import data from "./mock-data.json";
 import { Link } from "react-router-dom";
 import "./halamanguru.scss";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import gql from "graphql-tag";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import {useMutation, useQuery } from "@apollo/client";
 
 const HalamanGuru = () => {
   const {
@@ -213,44 +212,37 @@ const HalamanGuru = () => {
           type="text"
           name="soal"
           required="required"
-          placeholder="Enter a name..."
+          placeholder="Isi Soal"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="jawabanA"
           required="required"
-          placeholder="Enter an addres..."
+          placeholder="Isi Jawaban A"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="jawabanB"
           required="required"
-          placeholder="Enter a phone number..."
+          placeholder="Isi Jawaban B"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="jawabanC"
           required="required"
-          placeholder="Enter an email..."
+          placeholder="Isi Jawaban C"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="jawabanD"
           required="required"
-          placeholder="Enter an email..."
+          placeholder="Isi Jawaban D"
           onChange={handleAddFormChange}
         />
-        {/* <input
-          type="text"
-          name="jawabanBenar"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        /> */}
         <select
           class="custom-select"
           name="jawabanBenar"

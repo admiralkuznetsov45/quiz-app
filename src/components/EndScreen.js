@@ -1,7 +1,10 @@
 import React , {Fragment , useState} from 'react';
 import { useContext } from "react";
 import { QuizData } from './QuizData';
+import gql from "graphql-tag";
+import {  useQuery } from "@apollo/client";
 import { useNavigate } from 'react-router-dom'
+import "./endscreen.scss";
 
 const EndScreen = ({length,score}) => {
 const navigate = useNavigate();
@@ -9,19 +12,17 @@ const pulang = () => {
     navigate('/')
   };
 
-
 return (
-<div>
-    <div class ="header">
-    </div>
+  <div id="body">
+      <div class="header"></div>
 
-    <h1>Kuis Kelar</h1>
-    <h1> {score}/{length}</h1>
+      <h1 id="judul">Kuis Kelar</h1>
+      <h1 id="hasil"> {score}/{length}</h1>
 
-    <button onClick={pulang} id="nextQuestion">
-          Pulang Selesai
-        </button>
-    </div>
+      <button onClick={pulang} id="nextQuestion">
+        <p> Pulang Selesai </p>
+      </button>
+  </div>
 )
 }
 export default EndScreen

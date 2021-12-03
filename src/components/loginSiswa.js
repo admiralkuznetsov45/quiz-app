@@ -1,10 +1,8 @@
 import React , {Fragment, useState} from 'react';
 import './home.scss';
-import {Link} from 'react-router-dom'
 import './loginSiswa.scss';
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
-import { ValuesOfCorrectTypeRule } from 'graphql';
+import { Button, Form } from 'semantic-ui-react'
 import gql from 'graphql-tag';
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom'
